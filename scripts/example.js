@@ -1,4 +1,5 @@
 'use strict'
+const fetch = require("node-fetch")
 
 // Description:
 //   Example scripts for you to examine and try out.

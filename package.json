@@ -5,12 +5,14 @@
   "author": "kyle1james <kyle1james@gmail.com>",
   "description": "are we doomed?",
   "dependencies": {
+    "fetch": "^1.1.0",
     "hubot": "^3.3.2",
     "hubot-diagnostics": "^1.0.0",
     "hubot-help": "^1.0.1",
     "hubot-redis-brain": "^1.0.0",
     "hubot-rules": "^1.0.0",
-    "hubot-slack": "^4.7.2"
+    "hubot-slack": "^4.7.2",
+    "node-fetch": "^2.6.0"
   },
   "engines": {
     "node": "> 4.0.0"
