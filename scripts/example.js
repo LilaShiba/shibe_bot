@@ -1,6 +1,4 @@
-'use strict'
-
-// Description:
+/ Description:
 //   Example scripts for you to examine and try out.
 //
 // Notes:
@@ -10,13 +8,69 @@
 //
 //   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
-module.exports = (robot) => {
 
-  // robot.hear(/badger/i, (res) => {
-  //   res.send('Badgers? BADGERS? WE DON’T NEED NO STINKIN BADGERS')
-  // })
-  //
-  // robot.respond(/open the (.*) doors/i, (res) => {
+
+
+module.exports = (bot) => {
+  const = todo = false
+  bot.hear(/Hello!/, function(res) {
+  return res.send("Bark!");
+  });
+
+  // neo api
+  bot.hear(/Are we doomed/, function(res){
+    const current_date = new Date().toISOString().slice(0,10);
+    const api_key = process.env.API_KEY
+    console.log(api_key)
+    const url = "https://api.nasa.gov/neo/rest/v1/feed?start_date="+current_date+"&end_date="+current_date+"&api_key=DEMO_KEY"
+    fetch(url).then(resp => resp.json()).then(resp =>{
+      const v = resp.near_earth_objects[current_date][0]
+      return res.send("Hmmm, there are only " +resp.element_count+ " near earth asteroids today. My favorite is called " +v.name+ ", which is about: " +v.estimated_diameter.miles.estimated_diameter_max+ " miles in diameter. Don't worry! The miss distance is " + v.close_approach_data[0].miss_distance.miles+" miles, or was it inches away?")
+      }).catch(err => console.log(err))
+  });
+
+  // youtube video
+  bot.hear(/What is a shiba/, (res) => {
+    res.send('https://www.youtube.com/watch?v=tLWcMrDTny8&t=102s')
+    res.send("You're Welcome!")
+  })
+
+  // gif
+  bot.hear(/selfie/, (res) => {
+    return res.send('https://media.giphy.com/media/shiU2BLT0g5RS/giphy.gif')
+  })
+
+  // link to app
+  bot.hear(/where is iss/, (res) => {
+    res.send('Here is a live tracker app')
+    res.send('https://bit.ly/estelle-space')
+    return res.send('Check it out!')
+  })
+
+  // tofu chan!
+  bot.hear(/tofu chan!/, (res) => {
+    res.send('My hero!')
+    return res.send('https://www.youtube.com/watch?v=32lUnBsTFzU')
+  })
+
+
+  // make todo list
+
+  bot.hear(/'make todo'/, (res) => {
+    const todo = []
+    return res.send('Todo made. If you want to add something SAY: add to todo, if you want to see the list SAY: see list')
+  })
+
+  bot.hear(/'add to todo'/,(res) => {
+    if (todo == false){
+      const todo = ['1: Have Shiba make list']
+      return res.send('Ahh, you need to make a list. I guess I will just do it. Like everything else. There list made try adding again. Here it is '+ todo)
+    }
+    res.send('What do you want to add?')
+    res.emote('makes a freshly baked pie')
+  })
+
+    // robot.respond(/open the (.*) doors/i, (res) => {
   //   const doorType = res.match[1]
   //
   //   if (doorType === 'pod bay') {
@@ -41,15 +95,15 @@ module.exports = (robot) => {
   //   res.send(`${res.message.text}? That’s a Paddlin`)
   // })
   //
-  // const enterReplies = ['Hi', 'Target Acquired', 'Firing', 'Hello friend.', 'Gotcha', 'I see you']
-  // const leaveReplies = ['Are you still there?', 'Target lost', 'Searching']
-  //
-  // robot.enter((res) => {
-  //   res.send(res.random(enterReplies))
-  // })
-  // robot.leave((res) => {
-  //   res.send(res.random(leaveReplies))
-  // })
+  const enterReplies = ['Hi', 'Target Acquired', 'Firing', 'Hello friend.', 'Gotcha', 'I see you']
+  const leaveReplies = ['Are you still there?', 'Target lost', 'Searching']
+
+  bot.enter((res) => {
+    res.send(res.random(enterReplies))
+  })
+  bot.leave((res) => {
+    res.send(res.random(leaveReplies))
+  })
   //
   // const answer = process.env.HUBOT_ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE_THE_UNIVERSE_AND_EVERYTHING
   //
