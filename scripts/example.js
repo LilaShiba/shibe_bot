@@ -53,6 +53,15 @@ module.exports = (bot) => {
       return res.send('https://www.youtube.com/watch?v=32lUnBsTFzU')
     })
 
+    bot.hear(/exit ticket/, (res) =>{
+      res.send('Here ya go and thanks!')
+      return res.send('https://forms.gle/BKPdkDdjVTQ9JCML9')
+    })
+
+    bot.hear(/class repo/, (res) =>{
+      res.send('Okie')
+      return res.send('https://git.generalassemb.ly/kjams/JSR_4_2020')
+    })
   // robot.hear(/badger/i, (res) => {
   //   res.send('Badgers? BADGERS? WE DON’T NEED NO STINKIN BADGERS')
   // })
