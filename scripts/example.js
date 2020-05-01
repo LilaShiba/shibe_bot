@@ -18,7 +18,7 @@ module.exports = (bot) => {
     });
   
     // neo api
-    bot.hear(/Are we doomed/, function(res){
+  bot.hear(/Are we doomed/, function(res){
       const current_date = new Date().toISOString().slice(0,10);
       const api_key = process.env.API_KEY
       console.log(api_key)
