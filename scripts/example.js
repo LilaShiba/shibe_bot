@@ -1,5 +1,8 @@
 'use strict'
 const fetch = require("node-fetch")
+// For Node.JS, you need to import the fs (file system) module
+const { createReadStream } = require('fs');
+
 
 // Description:
 //   Example scripts for you to examine and try out.
@@ -12,12 +15,53 @@ const fetch = require("node-fetch")
 //   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 module.exports = (bot) => {
+let dogPhoto = require('path').join(__dirname,'/imgs/dog.jpg');
 
+
+// upload image
+bot.respond(/dog/, (res) => {
+  let opts={
+    content: dogPhoto,
+    title: 'A Doggo',
+    channels: res.message.room,
+    file: createReadStream(dogPhoto)
+  }
+  bot.adapter.client.web.files.upload(dogPhoto, opts)
+} )
+  
+
+// pascal
+  bot.respond(/pascal (.*)/, function(msg){
+    let num = msg.match[1]
+    let ans = p(num)
+    msg.reply(ans)
+      // pascal stuff 
+    function p(n){
+      let tri = [[1], [1,1]]
+      for(let j = 2; j < n; j++){
+          let prev = tri[tri.length-1];
+          let newRow = [1]
+          for(let i = 0 ; i < prev.length-1; i++){
+              let current = prev[i];
+              let next = prev[i+1]
+              newRow.push(current+next)
+          }
+          newRow.push(1)
+          tri.push(newRow)
+      }
+
+      return tri[n-1]
+    }  
+});
+
+// Hello
   bot.hear(/Hello!/, function(res) {
+    res.send('Meowowow')
     return res.send("Bark!");
     });
+
   
-    // neo api
+// neo api
   bot.hear(/Are we doomed/, function(res){
       const current_date = new Date().toISOString().slice(0,10);
       const api_key = process.env.API_KEY
@@ -33,6 +77,10 @@ module.exports = (bot) => {
     bot.hear(/What is a shiba/, (res) => {
       res.send('https://www.youtube.com/watch?v=tLWcMrDTny8&t=102s')
       res.send("You're Welcome!")
+    })
+
+    bot.hear(/food/, (res) => {
+      return res.send('yum')
     })
   
     // gif
