@@ -15,19 +15,19 @@ const { createReadStream } = require('fs');
 //   These are from the scripting documentation: https://github.com/github/hubot/blob/master/docs/scripting.md
 
 module.exports = (bot) => {
-let dogPhoto = require('path').join(__dirname,'/imgs/dog.jpg');
-// upload image
-bot.respond(/dog/, (res) => {
+// let dogPhoto = require('path').join(__dirname,'/imgs/dog.jpg');
+// // upload image
+// bot.respond(/dog/, (res) => {
 
-  let opts={
-    content: dogPhoto,
-    title: 'A Doggo',
-    channels: res.message.room,
-    file: createReadStream(dogPhoto)
-  }
+//   let opts={
+//     content: dogPhoto,
+//     title: 'A Doggo',
+//     channels: res.message.room,
+//     file: createReadStream(dogPhoto)
+//   }
 
-  bot.adapter.client.web.files.upload('woof', opts)
-} )
+//   bot.adapter.client.web.files.upload('woof', opts)
+// } )
 
 // pascal
   bot.respond(/pascal (.*)/, function(msg){
