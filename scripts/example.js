@@ -3,7 +3,7 @@ const fetch = require("node-fetch")
 // For Node.JS, you need to import the fs (file system) module
 const { createReadStream } = require('fs');
 
-
+// HUBOT_SLACK_TOKEN=xoxb-1036007048677-1094668266853-zdP4TOz4dbLSJ4K7YmRsUc15 ./bin/hubot --adapter slack
 // Description:
 //   Example scripts for you to examine and try out.
 //
@@ -16,19 +16,18 @@ const { createReadStream } = require('fs');
 
 module.exports = (bot) => {
 let dogPhoto = require('path').join(__dirname,'/imgs/dog.jpg');
-
-
 // upload image
 bot.respond(/dog/, (res) => {
+
   let opts={
     content: dogPhoto,
     title: 'A Doggo',
     channels: res.message.room,
     file: createReadStream(dogPhoto)
   }
-  bot.adapter.client.web.files.upload(dogPhoto, opts)
+
+  bot.adapter.client.web.files.upload('woof', opts)
 } )
-  
 
 // pascal
   bot.respond(/pascal (.*)/, function(msg){
