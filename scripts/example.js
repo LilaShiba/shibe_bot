@@ -3,7 +3,6 @@ const fetch = require("node-fetch")
 // For Node.JS, you need to import the fs (file system) module
 const { createReadStream } = require('fs');
 
-// HUBOT_SLACK_TOKEN=xoxb-1036007048677-1094668266853-zdP4TOz4dbLSJ4K7YmRsUc15 ./bin/hubot --adapter slack
 // Description:
 //   Example scripts for you to examine and try out.
 //
