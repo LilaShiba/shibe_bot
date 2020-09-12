@@ -13,7 +13,7 @@
     "hubot-rules": "^1.0.0",
     "hubot-slack": "^4.7.2",
     "hubot-spotify-control": "^0.1.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "engines": {
     "node": "> 4.0.0"
